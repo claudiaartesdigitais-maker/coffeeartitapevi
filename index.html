@@ -37,10 +37,22 @@
         }
 
         .logo-img { max-width: 70px; height: auto; margin-bottom: 5px; }
-        h1 { margin: 0; font-size: 1.2rem !important; letter-spacing: 1px; text-transform: uppercase; color: #ffffff !important; display: block !important; }
+        h1 { margin: 0; font-size: 1.2rem !important; letter-spacing: 1px; text-transform: uppercase; color: #ffffff !important; }
+
+        .btn-trocar-unidade-topo {
+            text-decoration: none;
+            color: var(--cafe-light);
+            font-size: 0.7rem;
+            margin-top: 5px;
+            border: 1px solid var(--accent);
+            padding: 3px 8px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
 
         .controles-topo { 
-            padding: 15px; 
+            padding: 12px 15px; 
             background: #fdf8f3; 
             border-bottom: 1px solid #eee; 
             width: 100%;
@@ -48,9 +60,21 @@
             top: 140px; left: 0;
             z-index: 9998;
             display: none;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .voltar-btn { cursor: pointer; font-weight: bold; font-size: 1.1rem; color: var(--cafe-dark); display: flex; align-items: center; gap: 8px; }
+        .voltar-btn { cursor: pointer; font-weight: bold; font-size: 1rem; color: var(--cafe-dark); display: flex; align-items: center; gap: 8px; }
+
+        .btn-trocar-mini {
+            text-decoration: none;
+            color: var(--cafe-dark);
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 1px solid var(--cafe-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
 
         #tela-categorias { 
             padding-top: 160px; 
@@ -133,6 +157,9 @@
 <header>
     <img src="./Logotipo.png" alt="Logo CoffeArt" class="logo-img" onerror="this.style.display='none'">
     <h1>COFFEART - ITAPEVI</h1>
+    <a href="https://claudiaartesdigitais-maker.github.io/coffeeart-unidades/" class="btn-trocar-unidade-topo">
+        <i class="fas fa-exchange-alt"></i> Mudar Unidade
+    </a>
 </header>
 
 <div id="tela-categorias">
@@ -199,6 +226,9 @@
         <div class="voltar-btn" onclick="voltarParaCategorias()">
             <i class="fas fa-arrow-left"></i> Voltar ao Menu
         </div>
+        <a href="https://claudiaartesdigitais-maker.github.io/coffeeart-unidades/" class="btn-trocar-mini">
+            <i class="fas fa-exchange-alt"></i> Mudar Unidade
+        </a>
     </div>
     <div id="menu-container"></div>
     <div class="btn-fim" onclick="voltarParaCategorias()">
@@ -216,7 +246,7 @@
         const container = document.getElementById('menu-container');
         document.getElementById('tela-categorias').style.display = 'none';
         document.getElementById('tela-produtos').style.display = 'block';
-        document.getElementById('barra-voltar-fixa').style.display = 'block';
+        document.getElementById('barra-voltar-fixa').style.display = 'flex';
         
         container.innerHTML = '<p style="text-align:center; padding:50px; color:#888;">Carregando...</p>';
         window.scrollTo(0,0);
