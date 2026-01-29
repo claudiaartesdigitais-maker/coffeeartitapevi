@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Menu CoffeArt - Itapevi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { 
+            --cafe-dark: #755437; 
+            --cafe-light: #fff4e6; 
+            --accent: #be9b7b; 
+        }
+
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100%;
+            background-color: var(--cafe-light);
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        
+        header { 
+            text-align: center; 
+            padding: 10px; 
+            background: var(--cafe-dark); 
+            color: white; 
+            border-bottom: 5px solid var(--accent); 
+            width: 100%;
+            position: fixed; 
+            top: 0; left: 0;
+            z-index: 9999;
+            height: 130px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+
+        .logo-img { max-width: 80px; height: auto; margin-bottom: 5px; }
+        h1 { margin: 0; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; }
+
+        .controles-topo { 
+            padding: 15px; 
+            background: #fdf8f3; 
+            border-bottom: 1px solid #eee; 
+            width: 100%;
+            position: fixed;
+            top: 130px; left: 0;
+            z-index: 9998;
+            display: none;
+        }
+
+        .voltar-btn { cursor: pointer; font-weight: bold; font-size: 1.1rem; color: var(--cafe-dark); display: flex; align-items: center; gap: 8px; }
+
+        #tela-categorias { 
+            padding-top: 150px; 
+            width: 100%;
+            max-width: 500px; 
+            margin: 0 auto; 
+            padding-left: 15px; padding-right: 15px;
+            display: flex; flex-direction: column; gap: 12px; 
+            padding-bottom: 50px;
+        }
+
+        .btn-categoria { 
+            display: flex; align-items: center; justify-content: space-between; 
+            background: white; 
+            color: #000; 
+            padding: 18px 20px; 
+            border-radius: 12px; 
+            font-size: 1.1rem; 
+            font-weight: 800; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08); 
+            border-left: 10px solid var(--cafe-dark); 
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        #menu-container { padding-top: 195px; }
+        .item-card { background: white; border-radius: 12px; margin: 12px 15px; padding: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .topo-item { display: flex; gap: 15px; align-items: flex-start; }
+        .item-foto { width: 85px; height: 85px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: #f9f9f9; }
+        .item-info { flex-grow: 1; }
+        .item-nome { font-weight: bold; font-size: 1.1rem; color: #000; display: block; margin-bottom: 5px; text-transform: uppercase; }
+
+        .linha-variacao { display: flex; justify-content: space-between; align-items: baseline; margin-top: 6px; }
+        .var-tamanho { font-size: 0.95rem; color: #666; }
+        .var-pontos { flex-grow: 1; border-bottom: 1px dotted #ccc; margin: 0 8px; }
+        .var-preco { font-weight: bold; color: var(--cafe-dark); font-size: 1.05rem; }
+
+        .secao-adicionais {
+            margin: 30px 15px 15px 15px; 
+            padding: 15px; 
+            border-radius: 15px; 
+            background: #fff; 
+            border: 2px solid #efe4d8;
+        }
+        .titulo-adicionais {
+            margin: 0 0 12px 0; 
+            color: var(--cafe-dark); 
+            text-align: center; 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+        .item-adicional {
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.85rem; 
+            margin-bottom: 8px; 
+            color: #555;
+            border-bottom: 1px solid #f9f9f9;
+            padding-bottom: 4px;
+        }
+
+        #tela-produtos { display: none; width: 100%; }
+
+        .btn-fim { 
+            display: flex; align-items: center; justify-content: center; 
+            margin: 40px 15px 80px 15px; 
+            padding: 18px; 
+            background-color: var(--accent); 
+            color: white; 
+            border-radius: 50px; 
+            font-weight: bold; text-transform: uppercase;
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="./Logotipo.png" alt="Logo CoffeArt" class="logo-img" onerror="this.style.display='none'">
+    <h1>COFFEART - ITAPEVI</h1>
+</header>
+
+<div id="tela-categorias">
+    <div class="btn-categoria" onclick="carregarCategoria('CAFÉ ESPECIAL ARÁBICA 100%')">
+        <span><i class="fas fa-mug-hot" style="margin-right:10px; color:var(--accent)"></i> Café Especial Arábica 100%</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('LINHA CLÁSSICA COFFEE ART')">
+        <span><i class="fas fa-mug-hot" style="margin-right:10px; color:var(--accent)"></i> Linha Clássica Coffee Art</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>     
+    <div class="btn-categoria" onclick="carregarCategoria('BEBIDAS QUENTES')">
+        <span><i class="fas fa-mug-hot" style="margin-right:10px; color:var(--accent)"></i> BEBIDAS QUENTES</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('BEBIDAS GELADAS')">
+        <span><i class="fas fa-snowflake" style="margin-right:10px; color:var(--accent)"></i> BEBIDAS GELADAS</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('SUCOS')">
+        <span><i class="fas fa-glass-whiskey" style="margin-right:10px; color:var(--accent)"></i> SUCOS</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('INCREMENTE SUA BEBIDA')">
+        <span><i class="fas fa-plus-circle" style="margin-right:10px; color:var(--accent)"></i> INCREMENTE SUA BEBIDA</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('REFRIGERANTES')">
+        <span><i class="fas fa-wine-bottle" style="margin-right:10px; color:var(--accent)"></i> REFRIGERANTES</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('ÁGUAS')">
+        <span><i class="fas fa-tint" style="margin-right:10px; color:var(--accent)"></i> ÁGUAS</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('CHÁ KAFA')">
+        <span><i class="fas fa-leaf" style="margin-right:10px; color:var(--accent)"></i> CHÁ KAFA</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('CHÁ KURTEA')">
+        <span><i class="fas fa-leaf" style="margin-right:10px; color:var(--accent)"></i> CHÁ KURTEA</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('DOCES')">
+        <span><i class="fas fa-cookie-bite" style="margin-right:10px; color:var(--accent)"></i> DOCES</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('SALGADOS')">
+        <span><i class="fas fa-utensils" style="margin-right:10px; color:var(--accent)"></i> SALGADOS</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('INCREMENTE SEU SALGADO')">
+        <span><i class="fas fa-plus-square" style="margin-right:10px; color:var(--accent)"></i> INCREMENTE SEU SALGADO</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="btn-categoria" onclick="carregarCategoria('SALGADOS POR ENCOMENDA')">
+        <span><i class="fas fa-box" style="margin-right:10px; color:var(--accent)"></i> SALGADOS POR ENCOMENDA</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+</div>
+
+<div id="tela-produtos">
+    <div class="controles-topo" id="barra-voltar-fixa">
+        <div class="voltar-btn" onclick="voltarParaCategorias()">
+            <i class="fas fa-arrow-left"></i> Voltar ao Menu
+        </div>
+    </div>
+    <div id="menu-container"></div>
+    <div class="btn-fim" onclick="voltarParaCategorias()">
+        <i class="fas fa-arrow-left" style="margin-right: 12px;"></i> Voltar às Categorias
+    </div>
+</div>
+
+<script>
+    // URL EXCLUSIVA DA ABA ITAPEVI (GID 595872452)
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQKD0m6_S6gmLU6rraasr75cUk5Nt2O6Lbsl2v3Lcwj5y0DMlrnuLHo_hzFPT6f3kqzHoUbHY2utFO3/pub?gid=595872452&single=true&output=csv';
+
+    function limpar(t) { return t ? t.replace(/^"|"$/g, '').replace(/R\$/g, '').trim() : ""; }
+
+    async function carregarCategoria(categoriaAlvo) {
+        const container = document.getElementById('menu-container');
+        document.getElementById('tela-categorias').style.display = 'none';
+        document.getElementById('tela-produtos').style.display = 'block';
+        document.getElementById('barra-voltar-fixa').style.display = 'block';
+        
+        container.innerHTML = '<p style="text-align:center; padding:50px; color:#888;">Carregando...</p>';
+        window.scrollTo(0,0);
+
+        try {
+            const response = await fetch(CSV_URL + '&t=' + new Date().getTime());
+            const data = await response.text();
+            const rows = data.split(/\r?\n/);
+            
+            const agrupados = {};
+            const adicionais = {};
+
+            let categoriaAdicional = "";
+            const catBusca = categoriaAlvo.toUpperCase();
+            if (catBusca.includes("CAFÉ") || catBusca.includes("BEBIDAS") || catBusca.includes("SUCOS") || catBusca.includes("CHÁ")) {
+                categoriaAdicional = "INCREMENTE SUA BEBIDA";
+            } else if (catBusca === "SALGADOS") {
+                categoriaAdicional = "INCREMENTE SEU SALGADO";
+            }
+
+            // Lê a partir da linha 3 (index 2) por causa do título mesclado
+            for (let i = 2; i < rows.length; i++) {
+                if (!rows[i]) continue;
+                const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                
+                const cat   = limpar(cols[0]);
+                const prod  = limpar(cols[1]);
+                const tam   = limpar(cols[2]);
+                const preco = limpar(cols[3]);
+                const foto  = limpar(cols[7]);
+
+                if (cat.toUpperCase() === categoriaAlvo.toUpperCase()) {
+                    if (!agrupados[prod]) {
+                        agrupados[prod] = { nome: prod, foto: foto, variacoes: [] };
+                    }
+                    agrupados[prod].variacoes.push({ t: tam, p: preco });
+                }
+
+                if (categoriaAdicional && cat.toUpperCase() === categoriaAdicional.toUpperCase()) {
+                    adicionais[prod] = { nome: prod, preco: preco };
+                }
+            }
+
+            container.innerHTML = '';
+            
+            Object.values(agrupados).forEach(item => {
+                let varsHtml = '';
+                item.variacoes.forEach(v => {
+                    varsHtml += `
+                        <div class="linha-variacao">
+                            <span class="var-tamanho">${v.t}</span>
+                            <div class="var-pontos"></div>
+                            <span class="var-preco">R$ ${v.p}</span>
+                        </div>`;
+                });
+
+                container.innerHTML += `
+                    <div class="item-card">
+                        <div class="topo-item">
+                            ${item.foto ? `<img src="${item.foto}" class="item-foto" onerror="this.style.display='none'">` : 
+                            '<div class="item-foto" style="display:flex;align-items:center;justify-content:center;background:#f0f0f0"><i class="fas fa-camera" style="color:#ccc"></i></div>'}
+                            <div class="item-info">
+                                <span class="item-nome">${item.nome}</span>
+                                ${varsHtml}
+                            </div>
+                        </div>
+                    </div>`;
+            });
+
+            const listaAdicionais = Object.values(adicionais);
+            if (listaAdicionais.length > 0) {
+                let htmlAdic = `
+                    <div class="secao-adicionais">
+                        <h4 class="titulo-adicionais">✨ Que tal um toque especial?</h4>`;
+                
+                listaAdicionais.forEach(a => {
+                    htmlAdic += `
+                        <div class="item-adicional">
+                            <span>${a.nome}</span>
+                            <span style="font-weight: bold; color: var(--cafe-dark);">+ R$ ${a.preco}</span>
+                        </div>`;
+                });
+                htmlAdic += `</div>`;
+                container.innerHTML += htmlAdic;
+            }
+
+        } catch (e) {
+            container.innerHTML = '<p style="text-align:center; padding:50px;">Erro ao carregar cardápio.</p>';
+        }
+    }
+
+    function voltarParaCategorias() {
+        document.getElementById('tela-produtos').style.display = 'none';
+        document.getElementById('barra-voltar-fixa').style.display = 'none';
+        document.getElementById('tela-categorias').style.display = 'flex';
+        window.scrollTo(0,0);
+    }
+</script>
+</body>
+</html>
