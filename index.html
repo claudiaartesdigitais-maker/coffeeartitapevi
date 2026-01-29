@@ -32,12 +32,12 @@
             position: fixed; 
             top: 0; left: 0;
             z-index: 9999;
-            height: 130px;
+            height: 140px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
 
-        .logo-img { max-width: 80px; height: auto; margin-bottom: 5px; }
-        h1 { margin: 0; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; }
+        .logo-img { max-width: 70px; height: auto; margin-bottom: 5px; }
+        h1 { margin: 0; font-size: 1.2rem !important; letter-spacing: 1px; text-transform: uppercase; color: #ffffff !important; display: block !important; }
 
         .controles-topo { 
             padding: 15px; 
@@ -45,7 +45,7 @@
             border-bottom: 1px solid #eee; 
             width: 100%;
             position: fixed;
-            top: 130px; left: 0;
+            top: 140px; left: 0;
             z-index: 9998;
             display: none;
         }
@@ -53,7 +53,7 @@
         .voltar-btn { cursor: pointer; font-weight: bold; font-size: 1.1rem; color: var(--cafe-dark); display: flex; align-items: center; gap: 8px; }
 
         #tela-categorias { 
-            padding-top: 150px; 
+            padding-top: 160px; 
             width: 100%;
             max-width: 500px; 
             margin: 0 auto; 
@@ -76,7 +76,7 @@
             text-transform: uppercase;
         }
 
-        #menu-container { padding-top: 195px; }
+        #menu-container { padding-top: 205px; }
         .item-card { background: white; border-radius: 12px; margin: 12px 15px; padding: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
         .topo-item { display: flex; gap: 15px; align-items: flex-start; }
         .item-foto { width: 85px; height: 85px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: #f9f9f9; }
@@ -237,7 +237,6 @@
                 categoriaAdicional = "INCREMENTE SEU SALGADO";
             }
 
-            // Lê a partir da linha 3 (index 2) por causa do título mesclado
             for (let i = 2; i < rows.length; i++) {
                 if (!rows[i]) continue;
                 const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
