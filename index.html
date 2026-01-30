@@ -1,3 +1,10 @@
+Pronto, Claudia! Fiz a "limpeza" completa no código de Itapevi.
+
+Removi o botão de trocar unidade do topo e da barra interna, e aproveitei para ajustar a altura do cabeçalho, deixando-o idêntico ao de Embu para manter o padrão visual da sua marca.
+
+Aqui está o código pronto para você copiar e colar no arquivo index.html da pasta coffeeartitapevi:
+
+HTML
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,24 +39,12 @@
             position: fixed; 
             top: 0; left: 0;
             z-index: 9999;
-            height: 140px;
+            height: 120px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
 
         .logo-img { max-width: 70px; height: auto; margin-bottom: 5px; }
         h1 { margin: 0; font-size: 1.2rem !important; letter-spacing: 1px; text-transform: uppercase; color: #ffffff !important; }
-
-        .btn-trocar-unidade-topo {
-            text-decoration: none;
-            color: var(--cafe-light);
-            font-size: 0.7rem;
-            margin-top: 5px;
-            border: 1px solid var(--accent);
-            padding: 3px 8px;
-            border-radius: 5px;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
 
         .controles-topo { 
             padding: 12px 15px; 
@@ -57,27 +52,17 @@
             border-bottom: 1px solid #eee; 
             width: 100%;
             position: fixed;
-            top: 140px; left: 0;
+            top: 120px; left: 0;
             z-index: 9998;
             display: none;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
         }
 
         .voltar-btn { cursor: pointer; font-weight: bold; font-size: 1rem; color: var(--cafe-dark); display: flex; align-items: center; gap: 8px; }
 
-        .btn-trocar-mini {
-            text-decoration: none;
-            color: var(--cafe-dark);
-            font-size: 0.8rem;
-            font-weight: bold;
-            border: 1px solid var(--cafe-dark);
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-
         #tela-categorias { 
-            padding-top: 160px; 
+            padding-top: 140px; 
             width: 100%;
             max-width: 500px; 
             margin: 0 auto; 
@@ -100,7 +85,7 @@
             text-transform: uppercase;
         }
 
-        #menu-container { padding-top: 205px; }
+        #menu-container { padding-top: 185px; }
         .item-card { background: white; border-radius: 12px; margin: 12px 15px; padding: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
         .topo-item { display: flex; gap: 15px; align-items: flex-start; }
         .item-foto { width: 85px; height: 85px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: #f9f9f9; }
@@ -157,9 +142,6 @@
 <header>
     <img src="./Logotipo.png" alt="Logo CoffeArt" class="logo-img" onerror="this.style.display='none'">
     <h1>COFFEART - ITAPEVI</h1>
-    <a href="https://claudiaartesdigitais-maker.github.io/coffeeart-unidades/" class="btn-trocar-unidade-topo">
-        <i class="fas fa-exchange-alt"></i> Mudar Unidade
-    </a>
 </header>
 
 <div id="tela-categorias">
@@ -170,7 +152,7 @@
     <div class="btn-categoria" onclick="carregarCategoria('LINHA CLÁSSICA COFFEE ART')">
         <span><i class="fas fa-mug-hot" style="margin-right:10px; color:var(--accent)"></i> Linha Clássica Coffee Art</span>
         <i class="fas fa-chevron-right"></i>
-    </div>     
+    </div>      
     <div class="btn-categoria" onclick="carregarCategoria('BEBIDAS QUENTES')">
         <span><i class="fas fa-mug-hot" style="margin-right:10px; color:var(--accent)"></i> BEBIDAS QUENTES</span>
         <i class="fas fa-chevron-right"></i>
@@ -226,9 +208,6 @@
         <div class="voltar-btn" onclick="voltarParaCategorias()">
             <i class="fas fa-arrow-left"></i> Voltar ao Menu
         </div>
-        <a href="https://claudiaartesdigitais-maker.github.io/coffeeart-unidades/" class="btn-trocar-mini">
-            <i class="fas fa-exchange-alt"></i> Mudar Unidade
-        </a>
     </div>
     <div id="menu-container"></div>
     <div class="btn-fim" onclick="voltarParaCategorias()">
