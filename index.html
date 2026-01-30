@@ -16,7 +16,7 @@
             margin: 0 !important;
             padding: 0 !important;
             width: 100%;
-            background-color: var(--cafe-light);
+            background-color: #f8f8f8; /* Fundo levemente cinza como no Matos Bar */
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
@@ -24,228 +24,208 @@
         
         header { 
             text-align: center; 
-            padding: 15px; 
+            padding: 10px; 
             background: var(--cafe-dark); 
             color: white; 
-            border-bottom: 5px solid var(--accent); 
             width: 100%;
             position: fixed; 
             top: 0; left: 0;
-            z-index: 9999;
-            height: 120px;
+            z-index: 10000;
+            height: 100px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
+            border-bottom: 4px solid var(--accent);
         }
 
-        .logo-img { max-width: 60px; height: auto; margin-bottom: 5px; }
-        h1 { margin: 0; font-size: 1.1rem !important; letter-spacing: 1px; text-transform: uppercase; }
+        .logo-img { max-width: 55px; height: auto; margin-bottom: 3px; }
+        h1 { margin: 0; font-size: 0.9rem !important; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* GRID DE CATEGORIAS (IGUAL MATOS BAR) */
-        #tela-categorias {
-            padding: 140px 15px 40px 15px;
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Duas colunas */
-            gap: 12px;
-            max-width: 600px;
+        /* LISTA DE CATEGORIAS ESTILO MATOS BAR */
+        #container-categorias-fixo {
+            padding-top: 115px;
+            width: 100%;
+            max-width: 500px;
             margin: 0 auto;
+            padding-left: 15px;
+            padding-right: 15px;
         }
 
-        .card-categoria {
+        .item-categoria-lista {
             background: white;
-            border-radius: 12px;
-            padding: 20px 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            cursor: pointer;
-            border: 1px solid #eee;
-            transition: transform 0.2s;
-        }
-
-        .card-categoria i {
-            font-size: 1.8rem;
-            color: var(--accent);
             margin-bottom: 10px;
+            padding: 18px 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+            border-left: 6px solid var(--cafe-dark);
+            transition: 0.2s;
         }
 
-        .card-categoria span {
-            font-size: 0.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
+        .item-categoria-lista span {
+            font-weight: 700;
+            font-size: 1rem;
             color: #333;
-            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .item-categoria-lista i {
+            color: #ccc;
+            font-size: 0.9rem;
         }
 
         /* TELA DE PRODUTOS */
-        #tela-produtos { display: none; padding-top: 130px; }
-
-        .barra-topo-produtos {
-            position: fixed;
-            top: 120px;
-            left: 0;
+        #tela-produtos {
+            display: none;
+            padding-top: 100px;
             width: 100%;
-            background: #fdf8f3;
-            padding: 10px 15px;
-            border-bottom: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            z-index: 9998;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
-        .voltar-link {
-            color: var(--cafe-dark);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
+        .barra-voltar {
+            background: #fff;
+            padding: 15px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            border-bottom: 1px solid #eee;
+            position: fixed;
+            top: 100px;
+            width: 100%;
+            max-width: 500px;
+            z-index: 999;
+        }
+
+        .btn-voltar {
             cursor: pointer;
+            color: var(--cafe-dark);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .item-card { background: white; border-radius: 12px; margin: 12px 15px; padding: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-        .topo-item { display: flex; gap: 15px; align-items: flex-start; }
-        .item-foto { width: 80px; height: 80px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
-        .item-info { flex-grow: 1; }
-        .item-nome { font-weight: bold; font-size: 1rem; color: #000; display: block; margin-bottom: 5px; text-transform: uppercase; }
+        #menu-container { padding-top: 60px; padding-bottom: 40px; }
 
-        .linha-variacao { display: flex; justify-content: space-between; align-items: baseline; margin-top: 6px; }
-        .var-tamanho { font-size: 0.85rem; color: #666; }
-        .var-pontos { flex-grow: 1; border-bottom: 1px dotted #ccc; margin: 0 8px; }
-        .var-preco { font-weight: bold; color: var(--cafe-dark); font-size: 1rem; }
-
-        .btn-fim { 
-            display: flex; align-items: center; justify-content: center; 
-            margin: 30px 15px 80px 15px; 
+        /* CARDS DE PRODUTOS */
+        .item-card { 
+            background: white; 
+            margin: 10px 15px; 
             padding: 15px; 
-            background-color: var(--accent); 
-            color: white; 
-            border-radius: 50px; 
-            font-weight: bold; text-transform: uppercase;
-            cursor: pointer; 
+            border-radius: 10px;
+            display: flex;
+            gap: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
         }
 
-        /* Ajuste para telas pequenas */
-        @media (max-width: 350px) {
-            #tela-categorias { grid-template-columns: 1fr 1fr; }
-            .card-categoria span { font-size: 0.7rem; }
+        .item-info { flex: 1; }
+        .item-nome { font-weight: 700; font-size: 1rem; color: #222; text-transform: uppercase; }
+        .item-foto { width: 85px; height: 85px; border-radius: 8px; object-fit: cover; }
+
+        .linha-preco {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
+        .preco-valor { font-weight: 800; color: var(--cafe-dark); }
+
     </style>
 </head>
 <body>
 
 <header>
-    <img src="./Logotipo.png" alt="Logo CoffeArt" class="logo-img" onerror="this.style.display='none'">
+    <img src="./Logotipo.png" alt="Logo CoffeArt" class="logo-img">
     <h1>COFFEART - ITAPEVI</h1>
 </header>
 
-<div id="tela-categorias">
-    <div class="card-categoria" onclick="carregarCategoria('CAFÉ ESPECIAL ARÁBICA 100%')">
-        <i class="fas fa-mug-hot"></i><span>Cafés Arábica</span>
+<div id="container-categorias-fixo">
+    <div class="item-categoria-lista" onclick="carregarCategoria('CAFÉ ESPECIAL ARÁBICA 100%')">
+        <span>Cafés Arábica</span> <i class="fas fa-chevron-right"></i>
     </div>
-    <div class="card-categoria" onclick="carregarCategoria('LINHA CLÁSSICA COFFEE ART')">
-        <i class="fas fa-coffee"></i><span>Linha Clássica</span>
+    <div class="item-categoria-lista" onclick="carregarCategoria('LINHA CLÁSSICA COFFEE ART')">
+        <span>Linha Clássica</span> <i class="fas fa-chevron-right"></i>
     </div>
-    <div class="card-categoria" onclick="carregarCategoria('BEBIDAS QUENTES')">
-        <i class="fas fa-fire-alt"></i><span>Bebidas Quentes</span>
+    <div class="item-categoria-lista" onclick="carregarCategoria('BEBIDAS QUENTES')">
+        <span>Bebidas Quentes</span> <i class="fas fa-chevron-right"></i>
     </div>
-    <div class="card-categoria" onclick="carregarCategoria('BEBIDAS GELADAS')">
-        <i class="fas fa-snowflake"></i><span>Bebidas Geladas</span>
+    <div class="item-categoria-lista" onclick="carregarCategoria('BEBIDAS GELADAS')">
+        <span>Bebidas Geladas</span> <i class="fas fa-chevron-right"></i>
     </div>
-    <div class="card-categoria" onclick="carregarCategoria('SUCOS')">
-        <i class="fas fa-glass-whiskey"></i><span>Sucos</span>
+    <div class="item-categoria-lista" onclick="carregarCategoria('SUCOS')">
+        <span>Sucos</span> <i class="fas fa-chevron-right"></i>
     </div>
-    <div class="card-categoria" onclick="carregarCategoria('CHÁ KAFA')">
-        <i class="fas fa-leaf"></i><span>Chá Kafa</span>
+    <div class="item-categoria-lista" onclick="carregarCategoria('CHÁ KAFA')">
+        <span>Chá Kafa</span> <i class="fas fa-chevron-right"></i>
     </div>
-    <div class="card-categoria" onclick="carregarCategoria('DOCES')">
-        <i class="fas fa-cookie-bite"></i><span>Doces</span>
+    <div class="item-categoria-lista" onclick="carregarCategoria('DOCES')">
+        <span>Doces</span> <i class="fas fa-chevron-right"></i>
     </div>
-    <div class="card-categoria" onclick="carregarCategoria('SALGADOS')">
-        <i class="fas fa-utensils"></i><span>Salgados</span>
-    </div>
-    <div class="card-categoria" onclick="carregarCategoria('REFRIGERANTES')">
-        <i class="fas fa-bottle-wine"></i><span>Bebidas</span>
-    </div>
-    <div class="card-categoria" onclick="carregarCategoria('SALGADOS POR ENCOMENDA')">
-        <i class="fas fa-box"></i><span>Encomendas</span>
+    <div class="item-categoria-lista" onclick="carregarCategoria('SALGADOS')">
+        <span>Salgados</span> <i class="fas fa-chevron-right"></i>
     </div>
 </div>
 
 <div id="tela-produtos">
-    <div class="barra-topo-produtos">
-        <div class="voltar-link" onclick="voltarParaCategorias()">
-            <i class="fas fa-chevron-left"></i> Voltar ao Menu
+    <div class="barra-voltar">
+        <div class="btn-voltar" onclick="fecharProdutos()">
+            <i class="fas fa-arrow-left"></i> VOLTAR AO MENU
         </div>
     </div>
     <div id="menu-container"></div>
-    <div class="btn-fim" onclick="voltarParaCategorias()">
-        <i class="fas fa-arrow-left" style="margin-right: 10px;"></i> Voltar às Categorias
-    </div>
 </div>
 
 <script>
-    // URL ITAPEVI (GID 595872452)
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQKD0m6_S6gmLU6rraasr75cUk5Nt2O6Lbsl2v3Lcwj5y0DMlrnuLHo_hzFPT6f3kqzHoUbHY2utFO3/pub?gid=595872452&single=true&output=csv';
 
     function limpar(t) { return t ? t.replace(/^"|"$/g, '').replace(/R\$/g, '').trim() : ""; }
 
     async function carregarCategoria(categoriaAlvo) {
-        const container = document.getElementById('menu-container');
-        document.getElementById('tela-categorias').style.display = 'none';
+        document.getElementById('container-categorias-fixo').style.display = 'none';
         document.getElementById('tela-produtos').style.display = 'block';
-        
-        container.innerHTML = '<p style="text-align:center; padding:50px; color:#888;">Carregando...</p>';
+        const container = document.getElementById('menu-container');
+        container.innerHTML = '<p style="text-align:center; padding:50px;">Carregando...</p>';
         window.scrollTo(0,0);
 
         try {
             const response = await fetch(CSV_URL + '&t=' + new Date().getTime());
             const data = await response.text();
             const rows = data.split(/\r?\n/);
-            
             const agrupados = {};
+
             for (let i = 2; i < rows.length; i++) {
                 if (!rows[i]) continue;
                 const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 const cat = limpar(cols[0]);
-                const prod = limpar(cols[1]);
-                const tam = limpar(cols[2]);
-                const preco = limpar(cols[3]);
-                const foto = limpar(cols[7]);
-
                 if (cat.toUpperCase() === categoriaAlvo.toUpperCase()) {
-                    if (!agrupados[prod]) agrupados[prod] = { nome: prod, foto: foto, variacoes: [] };
-                    agrupados[prod].variacoes.push({ t: tam, p: preco });
+                    const prod = limpar(cols[1]);
+                    const tam = limpar(cols[2]);
+                    const preco = limpar(cols[3]);
+                    const foto = limpar(cols[7]);
+                    if (!agrupados[prod]) agrupados[prod] = { nome: prod, foto: foto, vars: [] };
+                    agrupados[prod].vars.push({ t: tam, p: preco });
                 }
             }
 
             container.innerHTML = '';
             Object.values(agrupados).forEach(item => {
-                let varsHtml = '';
-                item.variacoes.forEach(v => {
-                    varsHtml += `<div class="linha-variacao"><span class="var-tamanho">${v.t}</span><div class="var-pontos"></div><span class="var-preco">R$ ${v.p}</span></div>`;
+                let vHtml = '';
+                item.vars.forEach(v => {
+                    vHtml += `<div class="linha-preco"><span>${v.t}</span><span class="preco-valor">R$ ${v.p}</span></div>`;
                 });
-
                 container.innerHTML += `
                     <div class="item-card">
-                        <div class="topo-item">
-                            ${item.foto ? `<img src="${item.foto}" class="item-foto" onerror="this.style.display='none'">` : 
-                            '<div class="item-foto" style="display:flex;align-items:center;justify-content:center;background:#f9f9f9"><i class="fas fa-camera" style="color:#ddd"></i></div>'}
-                            <div class="item-info"><span class="item-nome">${item.nome}</span>${varsHtml}</div>
-                        </div>
+                        <div class="item-info"><div class="item-nome">${item.nome}</div>${vHtml}</div>
+                        ${item.foto ? `<img src="${item.foto}" class="item-foto">` : ''}
                     </div>`;
             });
-
-        } catch (e) {
-            container.innerHTML = '<p style="text-align:center; padding:50px;">Erro ao carregar.</p>';
-        }
+        } catch (e) { container.innerHTML = 'Erro ao carregar.'; }
     }
 
-    function voltarParaCategorias() {
+    function fecharProdutos() {
         document.getElementById('tela-produtos').style.display = 'none';
-        document.getElementById('tela-categorias').style.display = 'grid';
+        document.getElementById('container-categorias-fixo').style.display = 'block';
         window.scrollTo(0,0);
     }
 </script>
