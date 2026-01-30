@@ -16,7 +16,7 @@
             margin: 0 !important;
             padding: 0 !important;
             width: 100%;
-            background-color: #f8f8f8; /* Fundo levemente cinza como no Matos Bar */
+            background-color: var(--cafe-light);
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
@@ -24,112 +24,81 @@
         
         header { 
             text-align: center; 
-            padding: 10px; 
+            padding: 5px; 
             background: var(--cafe-dark); 
             color: white; 
             width: 100%;
             position: fixed; 
             top: 0; left: 0;
             z-index: 10000;
-            height: 100px;
+            height: 90px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            border-bottom: 4px solid var(--accent);
+            border-bottom: 3px solid var(--accent);
         }
 
-        .logo-img { max-width: 55px; height: auto; margin-bottom: 3px; }
-        h1 { margin: 0; font-size: 0.9rem !important; letter-spacing: 1px; text-transform: uppercase; }
+        .logo-img { max-width: 45px; height: auto; }
+        h1 { margin: 0; font-size: 0.8rem !important; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* LISTA DE CATEGORIAS ESTILO MATOS BAR */
-        #container-categorias-fixo {
-            padding-top: 115px;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
-        .item-categoria-lista {
-            background: white;
-            margin-bottom: 10px;
-            padding: 18px 20px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            cursor: pointer;
-            border-left: 6px solid var(--cafe-dark);
-            transition: 0.2s;
-        }
-
-        .item-categoria-lista span {
-            font-weight: 700;
-            font-size: 1rem;
-            color: #333;
-            text-transform: uppercase;
-        }
-
-        .item-categoria-lista i {
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-
-        /* TELA DE PRODUTOS */
-        #tela-produtos {
-            display: none;
-            padding-top: 100px;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .barra-voltar {
-            background: #fff;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #eee;
+        /* NAVEGAÇÃO IGUAL AO DO EMBU (ESTILO ABAS) */
+        .nav-categorias {
             position: fixed;
-            top: 100px;
+            top: 90px;
+            left: 0;
             width: 100%;
-            max-width: 500px;
-            z-index: 999;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            flex-wrap: wrap; /* Isso faz os botões ficarem ajustados na tela (sem rolar) */
+            justify-content: center; /* Centraliza os botões */
+            padding: 12px 10px;
+            border-bottom: 1px solid #ddd;
+            gap: 8px; /* Espaço entre as abas */
         }
 
-        .btn-voltar {
-            cursor: pointer;
-            color: var(--cafe-dark);
+        .tab-item {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #f0f0f0;
+            color: #555;
+            border-radius: 50px;
+            font-size: 0.72rem; /* Tamanho perfeito para leitura no celular */
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #eee;
         }
 
-        #menu-container { padding-top: 60px; padding-bottom: 40px; }
-
-        /* CARDS DE PRODUTOS */
-        .item-card { 
-            background: white; 
-            margin: 10px 15px; 
-            padding: 15px; 
-            border-radius: 10px;
-            display: flex;
-            gap: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+        .tab-item.active {
+            background: var(--cafe-dark);
+            color: white;
+            border-color: var(--cafe-dark);
         }
 
-        .item-info { flex: 1; }
-        .item-nome { font-weight: 700; font-size: 1rem; color: #222; text-transform: uppercase; }
-        .item-foto { width: 85px; height: 85px; border-radius: 8px; object-fit: cover; }
-
-        .linha-preco {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-            font-size: 0.9rem;
+        #menu-container { 
+            /* Espaço para o Header + as linhas de botões que pularam */
+            padding-top: 230px; 
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 40px;
         }
-        .preco-valor { font-weight: 800; color: var(--cafe-dark); }
+
+        /* ESTILO DOS CARDS IGUAL AO EMBU */
+        .item-card { background: white; border-radius: 10px; margin: 10px; padding: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .topo-item { display: flex; gap: 12px; align-items: center; }
+        .item-foto { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+        .item-info { flex-grow: 1; }
+        .item-nome { font-weight: 800; font-size: 0.95rem; color: #333; display: block; margin-bottom: 4px; text-transform: uppercase; }
+
+        .linha-variacao { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+        .var-tamanho { font-size: 0.85rem; color: #777; }
+        .var-pontos { flex-grow: 1; border-bottom: 1px dotted #ddd; margin: 0 8px; }
+        .var-preco { font-weight: bold; color: var(--cafe-dark); font-size: 0.95rem; }
+
+        .secao-adicionais { margin: 20px 10px; padding: 15px; border-radius: 10px; background: #fff; border: 1px dashed var(--accent); }
+        .titulo-adicionais { margin: 0 0 10px 0; color: var(--cafe-dark); text-align: center; font-size: 0.8rem; text-transform: uppercase; font-weight: 900; }
+        .item-adicional { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #555; }
 
     </style>
 </head>
@@ -140,94 +109,100 @@
     <h1>COFFEART - ITAPEVI</h1>
 </header>
 
-<div id="container-categorias-fixo">
-    <div class="item-categoria-lista" onclick="carregarCategoria('CAFÉ ESPECIAL ARÁBICA 100%')">
-        <span>Cafés Arábica</span> <i class="fas fa-chevron-right"></i>
-    </div>
-    <div class="item-categoria-lista" onclick="carregarCategoria('LINHA CLÁSSICA COFFEE ART')">
-        <span>Linha Clássica</span> <i class="fas fa-chevron-right"></i>
-    </div>
-    <div class="item-categoria-lista" onclick="carregarCategoria('BEBIDAS QUENTES')">
-        <span>Bebidas Quentes</span> <i class="fas fa-chevron-right"></i>
-    </div>
-    <div class="item-categoria-lista" onclick="carregarCategoria('BEBIDAS GELADAS')">
-        <span>Bebidas Geladas</span> <i class="fas fa-chevron-right"></i>
-    </div>
-    <div class="item-categoria-lista" onclick="carregarCategoria('SUCOS')">
-        <span>Sucos</span> <i class="fas fa-chevron-right"></i>
-    </div>
-    <div class="item-categoria-lista" onclick="carregarCategoria('CHÁ KAFA')">
-        <span>Chá Kafa</span> <i class="fas fa-chevron-right"></i>
-    </div>
-    <div class="item-categoria-lista" onclick="carregarCategoria('DOCES')">
-        <span>Doces</span> <i class="fas fa-chevron-right"></i>
-    </div>
-    <div class="item-categoria-lista" onclick="carregarCategoria('SALGADOS')">
-        <span>Salgados</span> <i class="fas fa-chevron-right"></i>
-    </div>
+<div class="nav-categorias" id="abas-categorias">
+    <div class="tab-item active" onclick="carregarCategoria('CAFÉ ESPECIAL ARÁBICA 100%', this)">Cafés Arábica</div>
+    <div class="tab-item" onclick="carregarCategoria('LINHA CLÁSSICA COFFEE ART', this)">Linha Clássica</div>
+    <div class="tab-item" onclick="carregarCategoria('BEBIDAS QUENTES', this)">Bebidas Quentes</div>
+    <div class="tab-item" onclick="carregarCategoria('BEBIDAS GELADAS', this)">Bebidas Geladas</div>
+    <div class="tab-item" onclick="carregarCategoria('SUCOS', this)">Sucos</div>
+    <div class="tab-item" onclick="carregarCategoria('CHÁ KAFA', this)">Chá Kafa</div>
+    <div class="tab-item" onclick="carregarCategoria('CHÁ KURTEA', this)">Chá Kurtea</div>
+    <div class="tab-item" onclick="carregarCategoria('REFRIGERANTES', this)">Refrigerantes</div>
+    <div class="tab-item" onclick="carregarCategoria('ÁGUAS', this)">Águas</div>
+    <div class="tab-item" onclick="carregarCategoria('DOCES', this)">Doces</div>
+    <div class="tab-item" onclick="carregarCategoria('SALGADOS', this)">Salgados</div>
 </div>
 
-<div id="tela-produtos">
-    <div class="barra-voltar">
-        <div class="btn-voltar" onclick="fecharProdutos()">
-            <i class="fas fa-arrow-left"></i> VOLTAR AO MENU
-        </div>
-    </div>
-    <div id="menu-container"></div>
-</div>
+<div id="menu-container"></div>
 
 <script>
+    // URL ITAPEVI (GID 595872452)
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQKD0m6_S6gmLU6rraasr75cUk5Nt2O6Lbsl2v3Lcwj5y0DMlrnuLHo_hzFPT6f3kqzHoUbHY2utFO3/pub?gid=595872452&single=true&output=csv';
 
     function limpar(t) { return t ? t.replace(/^"|"$/g, '').replace(/R\$/g, '').trim() : ""; }
 
-    async function carregarCategoria(categoriaAlvo) {
-        document.getElementById('container-categorias-fixo').style.display = 'none';
-        document.getElementById('tela-produtos').style.display = 'block';
+    async function carregarCategoria(categoriaAlvo, elemento) {
+        document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+        if(elemento) elemento.classList.add('active');
+
         const container = document.getElementById('menu-container');
-        container.innerHTML = '<p style="text-align:center; padding:50px;">Carregando...</p>';
-        window.scrollTo(0,0);
+        container.innerHTML = '<p style="text-align:center; padding:50px; color:#888;">Carregando...</p>';
 
         try {
             const response = await fetch(CSV_URL + '&t=' + new Date().getTime());
             const data = await response.text();
             const rows = data.split(/\r?\n/);
+            
             const agrupados = {};
+            const adicionais = {};
+            let categoriaAdicional = "";
+            const catBusca = categoriaAlvo.toUpperCase();
+
+            if (catBusca.includes("CAFÉ") || catBusca.includes("BEBIDAS") || catBusca.includes("SUCOS") || catBusca.includes("CHÁ")) {
+                categoriaAdicional = "INCREMENTE SUA BEBIDA";
+            } else if (catBusca === "SALGADOS") {
+                categoriaAdicional = "INCREMENTE SEU SALGADO";
+            }
 
             for (let i = 2; i < rows.length; i++) {
                 if (!rows[i]) continue;
                 const cols = rows[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                 const cat = limpar(cols[0]);
+                const prod = limpar(cols[1]);
+                const tam = limpar(cols[2]);
+                const preco = limpar(cols[3]);
+                const foto = limpar(cols[7]);
+
                 if (cat.toUpperCase() === categoriaAlvo.toUpperCase()) {
-                    const prod = limpar(cols[1]);
-                    const tam = limpar(cols[2]);
-                    const preco = limpar(cols[3]);
-                    const foto = limpar(cols[7]);
-                    if (!agrupados[prod]) agrupados[prod] = { nome: prod, foto: foto, vars: [] };
-                    agrupados[prod].vars.push({ t: tam, p: preco });
+                    if (!agrupados[prod]) agrupados[prod] = { nome: prod, foto: foto, variacoes: [] };
+                    agrupados[prod].variacoes.push({ t: tam, p: preco });
+                }
+                if (categoriaAdicional && cat.toUpperCase() === categoriaAdicional.toUpperCase()) {
+                    adicionais[prod] = { nome: prod, preco: preco };
                 }
             }
 
             container.innerHTML = '';
             Object.values(agrupados).forEach(item => {
-                let vHtml = '';
-                item.vars.forEach(v => {
-                    vHtml += `<div class="linha-preco"><span>${v.t}</span><span class="preco-valor">R$ ${v.p}</span></div>`;
+                let varsHtml = '';
+                item.variacoes.forEach(v => {
+                    varsHtml += `<div class="linha-variacao"><span class="var-tamanho">${v.t}</span><div class="var-pontos"></div><span class="var-preco">R$ ${v.p}</span></div>`;
                 });
+
                 container.innerHTML += `
                     <div class="item-card">
-                        <div class="item-info"><div class="item-nome">${item.nome}</div>${vHtml}</div>
-                        ${item.foto ? `<img src="${item.foto}" class="item-foto">` : ''}
+                        <div class="topo-item">
+                            ${item.foto ? `<img src="${item.foto}" class="item-foto" onerror="this.style.display='none'">` : 
+                            '<div class="item-foto" style="display:flex;align-items:center;justify-content:center;background:#f9f9f9"><i class="fas fa-camera" style="color:#ddd"></i></div>'}
+                            <div class="item-info"><span class="item-nome">${item.nome}</span>${varsHtml}</div>
+                        </div>
                     </div>`;
             });
-        } catch (e) { container.innerHTML = 'Erro ao carregar.'; }
+
+            const listaAdicionais = Object.values(adicionais);
+            if (listaAdicionais.length > 0) {
+                let htmlAdic = `<div class="secao-adicionais"><h4 class="titulo-adicionais">✨ Personalize</h4>`;
+                listaAdicionais.forEach(a => {
+                    htmlAdic += `<div class="item-adicional"><span>${a.nome}</span><span style="font-weight:bold; color:var(--cafe-dark);">+ R$ ${a.preco}</span></div>`;
+                });
+                container.innerHTML += htmlAdic + `</div>`;
+            }
+        } catch (e) {
+            container.innerHTML = '<p style="text-align:center; padding:50px;">Erro ao carregar.</p>';
+        }
     }
 
-    function fecharProdutos() {
-        document.getElementById('tela-produtos').style.display = 'none';
-        document.getElementById('container-categorias-fixo').style.display = 'block';
-        window.scrollTo(0,0);
-    }
+    window.onload = () => carregarCategoria('CAFÉ ESPECIAL ARÁBICA 100%');
 </script>
 </body>
 </html>
