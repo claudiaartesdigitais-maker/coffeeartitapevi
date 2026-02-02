@@ -18,7 +18,7 @@
             width: 100%;
             background-color: var(--cafe-light);
             font-family: 'Segoe UI', Roboto, sans-serif;
-            scroll-behavior: smooth; /* Deixa o deslize do botão suave */
+            scroll-behavior: smooth;
         }
 
         * { box-sizing: border-box; }
@@ -81,9 +81,9 @@
             border-color: var(--cafe-dark);
         }
 
-        /* BOTÃO AGUARDA PEDIDO */
+        /* ÁREA DO BOTÃO "SAIBA MAIS" */
         .area-botao-aguarda {
-            padding: 15px 15px 5px 15px;
+            padding: 20px 15px;
             text-align: center;
         }
 
@@ -92,13 +92,14 @@
             background: linear-gradient(135deg, var(--cafe-dark), #a67b5b);
             color: white !important;
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 12px 25px;
             border-radius: 15px;
-            font-size: 0.8rem;
-            line-height: 1.3;
+            font-size: 0.85rem;
+            line-height: 1.4;
             box-shadow: 0 4px 15px rgba(117, 84, 55, 0.3);
             border: 1px solid rgba(255,255,255,0.2);
             animation: pulse 2s infinite;
+            cursor: pointer;
         }
 
         @keyframes pulse {
@@ -129,11 +130,20 @@
         .secao-adicionais { margin: 20px 15px; padding: 15px; border-radius: 10px; background: #fff; border: 2px solid #efe4d8; }
         .titulo-adicionais { margin: 0 0 10px 0; color: var(--cafe-dark); text-align: center; font-size: 0.8rem; text-transform: uppercase; font-weight: 900; }
         .item-adicional { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #555; }
+
+        /* TELA DE BOAS VINDAS */
+        .tela-inicio {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--cafe-dark);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-<header id="inicio">
+<header id="topo-site">
     <img src="./Logotipo.png" alt="Logo CoffeArt" class="logo-img">
     <h1>COFFEART - ITAPEVI</h1>
 </header>
@@ -155,8 +165,7 @@
     </div>
 </div>
 
-<div id="menu-container">
-    </div>
+<div id="menu-container"></div>
 
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQKD0m6_S6gmLU6rraasr75cUk5Nt2O6Lbsl2v3Lcwj5y0DMlrnuLHo_hzFPT6f3kqzHoUbHY2utFO3/pub?gid=595872452&single=true&output=csv';
@@ -170,6 +179,32 @@
             const alturaTotalTopo = topoBox.offsetHeight + 90; 
             container.style.paddingTop = alturaTotalTopo + 'px';
         }
+    }
+
+    // FUNÇÃO PARA VOLTAR AO INÍCIO
+    function irParaInicio() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+        
+        const container = document.getElementById('menu-container');
+        container.innerHTML = `
+            <div class="tela-inicio">
+                <img src="./Logotipo.png" style="max-width: 120px; margin-bottom: 20px;">
+                <h2 style="font-size: 1.1rem; margin-bottom: 10px;">BEM-VINDO À COFFEART</h2>
+                <p style="font-style: italic; font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+                    "Mais que um café, uma experiência artística em cada xícara."
+                </p>
+                <div style="height: 2px; background: var(--accent); width: 60px; margin: 20px auto;"></div>
+                <p style="font-size: 0.85rem; padding: 0 20px;">
+                    Explore nossas categorias acima para descobrir sabores únicos enquanto aguarda seu pedido.
+                </p>
+                <div style="margin-top: 30px; font-size: 1.2rem; color: var(--accent); display: flex; justify-content: center; gap: 20px;">
+                    <i class="fas fa-mug-hot"></i>
+                    <i class="fas fa-cookie-bite"></i>
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+        `;
     }
 
     async function carregarCategoria(categoriaAlvo, elemento) {
@@ -215,13 +250,13 @@
                 }
             }
 
-            // Inserir o Botão de "Saiba Mais" no topo antes dos itens
+            // Inserir o Botão de "Saiba Mais" que agora chama a função irParaInicio
             container.innerHTML = `
                 <div class="area-botao-aguarda">
-                    <a href="#inicio" class="btn-aguarda">
+                    <div class="btn-aguarda" onclick="irParaInicio()">
                         <i class="fas fa-coffee"></i> Enquanto aguarda seu pedido,<br>
                         <strong>clique aqui e saiba mais sobre a CoffeeArte</strong>
-                    </a>
+                    </div>
                 </div>
             `;
 
@@ -249,7 +284,7 @@
                 });
                 container.innerHTML += htmlAdic + `</div>`;
             }
-            window.scrollTo(0,0);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         } catch (e) {
             container.innerHTML = '<p style="text-align:center; padding:50px;">Erro ao carregar cardápio.</p>';
         }
