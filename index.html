@@ -18,7 +18,6 @@
             width: 100%;
             background-color: var(--cafe-light);
             font-family: 'Segoe UI', Roboto, sans-serif;
-            scroll-behavior: smooth;
         }
 
         * { box-sizing: border-box; }
@@ -130,20 +129,11 @@
         .secao-adicionais { margin: 20px 15px; padding: 15px; border-radius: 10px; background: #fff; border: 2px solid #efe4d8; }
         .titulo-adicionais { margin: 0 0 10px 0; color: var(--cafe-dark); text-align: center; font-size: 0.8rem; text-transform: uppercase; font-weight: 900; }
         .item-adicional { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px; color: #555; }
-
-        /* TELA DE BOAS VINDAS */
-        .tela-inicio {
-            padding: 40px 20px;
-            text-align: center;
-            color: var(--cafe-dark);
-            animation: fadeIn 0.5s ease;
-        }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-<header id="topo-site">
+<header>
     <img src="./Logotipo.png" alt="Logo CoffeArt" class="logo-img">
     <h1>COFFEART - ITAPEVI</h1>
 </header>
@@ -179,32 +169,6 @@
             const alturaTotalTopo = topoBox.offsetHeight + 90; 
             container.style.paddingTop = alturaTotalTopo + 'px';
         }
-    }
-
-    // FUNÇÃO PARA VOLTAR AO INÍCIO
-    function irParaInicio() {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-        document.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
-        
-        const container = document.getElementById('menu-container');
-        container.innerHTML = `
-            <div class="tela-inicio">
-                <img src="./Logotipo.png" style="max-width: 120px; margin-bottom: 20px;">
-                <h2 style="font-size: 1.1rem; margin-bottom: 10px;">BEM-VINDO À COFFEART</h2>
-                <p style="font-style: italic; font-size: 0.9rem; color: #666; margin-bottom: 20px;">
-                    "Mais que um café, uma experiência artística em cada xícara."
-                </p>
-                <div style="height: 2px; background: var(--accent); width: 60px; margin: 20px auto;"></div>
-                <p style="font-size: 0.85rem; padding: 0 20px;">
-                    Explore nossas categorias acima para descobrir sabores únicos enquanto aguarda seu pedido.
-                </p>
-                <div style="margin-top: 30px; font-size: 1.2rem; color: var(--accent); display: flex; justify-content: center; gap: 20px;">
-                    <i class="fas fa-mug-hot"></i>
-                    <i class="fas fa-cookie-bite"></i>
-                    <i class="fas fa-heart"></i>
-                </div>
-            </div>
-        `;
     }
 
     async function carregarCategoria(categoriaAlvo, elemento) {
@@ -250,13 +214,14 @@
                 }
             }
 
-            // Inserir o Botão de "Saiba Mais" que agora chama a função irParaInicio
+            // AQUI ESTÁ A MUDANÇA: O link leva para a raiz do seu site
+            // Se o site principal for diferente de "/", coloque o link completo (ex: https://meusite.com)
             container.innerHTML = `
                 <div class="area-botao-aguarda">
-                    <div class="btn-aguarda" onclick="irParaInicio()">
-                        <i class="fas fa-coffee"></i> Enquanto aguarda seu pedido,<br>
+                    <a href="/" class="btn-aguarda">
+                        <i class="fas fa-store"></i> Enquanto aguarda seu pedido,<br>
                         <strong>clique aqui e saiba mais sobre a CoffeeArte</strong>
-                    </div>
+                    </a>
                 </div>
             `;
 
@@ -284,7 +249,7 @@
                 });
                 container.innerHTML += htmlAdic + `</div>`;
             }
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            window.scrollTo(0,0);
         } catch (e) {
             container.innerHTML = '<p style="text-align:center; padding:50px;">Erro ao carregar cardápio.</p>';
         }
