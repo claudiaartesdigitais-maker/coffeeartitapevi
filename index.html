@@ -160,6 +160,17 @@
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQKD0m6_S6gmLU6rraasr75cUk5Nt2O6Lbsl2v3Lcwj5y0DMlrnuLHo_hzFPT6f3kqzHoUbHY2utFO3/pub?gid=595872452&single=true&output=csv';
 
+    // FUNÇÃO QUE VOLTA PARA A PÁGINA INICIAL DAS UNIDADES (Mude para o link real se necessário)
+    function voltarParaUnidades() {
+        // Tenta voltar uma página no histórico (geralmente funciona se ela veio de lá)
+        // Se não funcionar, ele redireciona para o link principal
+        if (document.referrer.includes(window.location.hostname)) {
+            window.history.back();
+        } else {
+            window.location.href = "../"; // Sobe um nível na pasta do site
+        }
+    }
+
     function limpar(t) { return t ? t.replace(/^"|"$/g, '').replace(/R\$/g, '').trim() : ""; }
 
     function ajustarEspaco() {
@@ -214,14 +225,13 @@
                 }
             }
 
-            // AQUI ESTÁ A MUDANÇA: O link leva para a raiz do seu site
-            // Se o site principal for diferente de "/", coloque o link completo (ex: https://meusite.com)
+            // O Botão agora chama a função voltarParaUnidades()
             container.innerHTML = `
                 <div class="area-botao-aguarda">
-                    <a href="/" class="btn-aguarda">
+                    <div class="btn-aguarda" onclick="voltarParaUnidades()">
                         <i class="fas fa-store"></i> Enquanto aguarda seu pedido,<br>
                         <strong>clique aqui e saiba mais sobre a CoffeeArte</strong>
-                    </a>
+                    </div>
                 </div>
             `;
 
