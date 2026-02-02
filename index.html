@@ -18,6 +18,7 @@
             width: 100%;
             background-color: var(--cafe-light);
             font-family: 'Segoe UI', Roboto, sans-serif;
+            scroll-behavior: smooth; /* Deixa o deslize do botão suave */
         }
 
         * { box-sizing: border-box; }
@@ -39,7 +40,7 @@
         .logo-img { max-width: 45px; height: auto; }
         h1 { margin: 0; font-size: 0.8rem !important; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* AREA DE CATEGORIAS FIXA COM LINHA GROSSA */
+        /* AREA DE CATEGORIAS FIXA */
         #fixo-topo {
             position: fixed;
             top: 90px;
@@ -49,7 +50,7 @@
             z-index: 10000;
             display: flex;
             flex-direction: column;
-            border-bottom: 6px solid var(--accent); /* LINHA GROSSA DIVISÓRIA */
+            border-bottom: 6px solid var(--accent);
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
@@ -80,6 +81,32 @@
             border-color: var(--cafe-dark);
         }
 
+        /* BOTÃO AGUARDA PEDIDO */
+        .area-botao-aguarda {
+            padding: 15px 15px 5px 15px;
+            text-align: center;
+        }
+
+        .btn-aguarda {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--cafe-dark), #a67b5b);
+            color: white !important;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            line-height: 1.3;
+            box-shadow: 0 4px 15px rgba(117, 84, 55, 0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
         /* CONTAINER DINÂMICO */
         #menu-container { 
             width: 100%;
@@ -106,7 +133,7 @@
 </head>
 <body>
 
-<header>
+<header id="inicio">
     <img src="./Logotipo.png" alt="Logo CoffeArt" class="logo-img">
     <h1>COFFEART - ITAPEVI</h1>
 </header>
@@ -128,7 +155,8 @@
     </div>
 </div>
 
-<div id="menu-container"></div>
+<div id="menu-container">
+    </div>
 
 <script>
     const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQKD0m6_S6gmLU6rraasr75cUk5Nt2O6Lbsl2v3Lcwj5y0DMlrnuLHo_hzFPT6f3kqzHoUbHY2utFO3/pub?gid=595872452&single=true&output=csv';
@@ -187,7 +215,16 @@
                 }
             }
 
-            container.innerHTML = '';
+            // Inserir o Botão de "Saiba Mais" no topo antes dos itens
+            container.innerHTML = `
+                <div class="area-botao-aguarda">
+                    <a href="#inicio" class="btn-aguarda">
+                        <i class="fas fa-coffee"></i> Enquanto aguarda seu pedido,<br>
+                        <strong>clique aqui e saiba mais sobre a CoffeeArte</strong>
+                    </a>
+                </div>
+            `;
+
             Object.values(agrupados).forEach(item => {
                 let varsHtml = '';
                 item.variacoes.forEach(v => {
